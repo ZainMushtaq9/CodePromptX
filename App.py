@@ -10,7 +10,10 @@ st.title("⚡ CodePromptX — AI Prompt Generator")
 st.caption("Powered by GroqCloud (Free Model: groq/compound-mini)")
 
 # Input box
-topic = st.text_input("Enter your idea or topic:", placeholder="e.g. AI logo design, startup pitch, YouTube title...")
+topic = st.text_input(
+    "Enter your idea or topic:",
+    placeholder="e.g. AI logo design, startup pitch, YouTube title..."
+)
 
 # Generate button
 if st.button("Generate Prompts 🚀"):
@@ -18,21 +21,26 @@ if st.button("Generate Prompts 🚀"):
         st.warning("Please enter a topic first.")
     else:
         with st.spinner("Thinking..."):
+            # Define messages properly in Python
+            messages = [
+                {
+                    "role": "system",
+                    "content": "You are an expert AI prompt generator. Provide short, precise, and highly relevant prompts that a professional could immediately use. Avoid fluff or generic suggestions."
+                },
+                {
+                    "role": "user",
+                    "content": f'Given the topic "{topic}", generate 3 clear, actionable, and authentic prompts that directly relate to this subject. Each prompt should be unique and useful for practical implementation.'
+                }
+            ]
+
+            # Call Groq API
             response = client.chat.completions.create(
                 model="groq/compound-mini",
-                const messages = [
-  {
-    role: "system",
-    content: "You are an expert AI prompt generator. Provide short, precise, and highly relevant prompts that a professional could immediately use. Avoid fluff or generic suggestions."
-  },
-  {
-    role: "user",
-    content: `Given the topic "${topic}", generate 3 clear, actionable, and authentic prompts that directly relate to this subject. Each prompt should be unique and useful for practical implementation.`
-  }
-];
-
+                messages=messages
             )
+
             output = response.choices[0].message.content
+
         st.subheader("✨ Your AI-Generated Prompts")
         st.write(output)
 
