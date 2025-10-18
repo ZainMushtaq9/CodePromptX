@@ -20,10 +20,17 @@ if st.button("Generate Prompts 🚀"):
         with st.spinner("Thinking..."):
             response = client.chat.completions.create(
                 model="groq/compound-mini",
-                messages=[
-                    {"role": "system", "content": "You are a creative AI that generates unique, viral prompts."},
-                    {"role": "user", "content": f"Generate 3 creative and original prompts for: {topic}"}
-                ]
+                const messages = [
+  {
+    role: "system",
+    content: "You are an expert AI prompt generator. Provide short, precise, and highly relevant prompts that a professional could immediately use. Avoid fluff or generic suggestions."
+  },
+  {
+    role: "user",
+    content: `Given the topic "${topic}", generate 3 clear, actionable, and authentic prompts that directly relate to this subject. Each prompt should be unique and useful for practical implementation.`
+  }
+];
+
             )
             output = response.choices[0].message.content
         st.subheader("✨ Your AI-Generated Prompts")
