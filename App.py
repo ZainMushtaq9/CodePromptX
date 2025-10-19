@@ -14,7 +14,7 @@ st.caption("Powered by GroqCloud (Free Model: groq/compound-mini)")
 topic = st.text_area(
     "Enter your idea or topic:",
     placeholder="e.g. AI logo design, startup pitch, YouTube title...",
-    height=250  # You can adjust this height value
+    height=150  # You can adjust this height value
 )
 
 
