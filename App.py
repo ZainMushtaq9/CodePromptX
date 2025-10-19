@@ -10,10 +10,13 @@ st.title("⚡ CodePromptX — AI Prompt Generator")
 st.caption("Powered by GroqCloud (Free Model: groq/compound-mini)")
 
 # Input box
-topic = st.text_input(
+# Bigger input box using text_area
+topic = st.text_area(
     "Enter your idea or topic:",
-    placeholder="e.g. AI logo design, startup pitch, YouTube title..."
+    placeholder="e.g. AI logo design, startup pitch, YouTube title...",
+    height=250  # You can adjust this height value
 )
+
 
 # Generate button
 if st.button("Generate Prompts 🚀"):
